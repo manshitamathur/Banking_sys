@@ -1,0 +1,52 @@
+{%extends "base.html"%}
+{%block content%}
+  <div class="row content-wrapper">
+    <div class="columns large-12">
+      <div class="row">
+        <div class="columns large-8 content">
+          
+          <ul class="row">
+            <li class="columns large-4">
+              
+              
+              <!-- <h3 class="employer-name">Rebecca Traver</h3>
+              <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat porro voluptatem</p>
+            -->
+          
+{% if flag == 0 %}
+
+      <h2>{{ first_name }} {{ last_name }}</p></h2>
+      <p>Email:<b> {{ user_email }}</b></p>
+      <p>Account No.: <b>{{ account_no }}</b></p>
+      <p>Current Balance: <b><span>&#8377;</span>{{ current_balance }}</b></p>
+      
+      <hr/>
+   
+  </li>
+
+
+{% endif %}
+          
+          </li>
+            <li class="columns large-4">
+             
+              <form id="contact-form" method="post" action="mybank/view_your_account_details/">
+                <h2><span class="color_15">Enter Your Credentials:</span></h2>
+                
+                <input type="text" name="user_email" placeholder="Email:" required>
+                
+                <input type="password" name="password"  placeholder="Password:" required>
+                
+                {%csrf_token%}
+                <input type="submit" class="button" name="submit" value="Login" >
+              </form>
+
+            </li>
+           
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  {%endblock%}

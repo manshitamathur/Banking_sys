@@ -1,0 +1,63 @@
+{%extends "base.html"%}
+{%block title%}Transaction{%endblock%}
+{%block content%}
+  <div class="row content-wrapper">
+    <div class="columns large-12">
+      <div class="row">
+        <div class="columns large-18 content">
+          
+          <ul class="row">
+            <form action="mybank/transfer/" method="POST">
+              {% csrf_token %}
+            <li class="columns large-4">
+              {% if flag == 1 %}
+                                <div data-mesh-id="comp-kh5xscof1inlineContent-gridContainer" data-testid="mesh-container-content">
+                                  <div id="comp-kh5xscof2" class="_1Z_nJ" data-testid="richTextElement">
+                                      <h2 class="font_0" style="text-align:left;line-height:1.41em;font-size:22px">
+                                          <span class="color_15">Both accounts are same.</span><br/>
+                                          <span class="color_15">Please enter VALID account details.</span><br/><br/><br/>
+                                      </h2>
+                                  </div>
+                                </div>
+                                {% elif flag == 2 %}
+                                <div data-mesh-id="comp-kh5xscof1inlineContent-gridContainer" data-testid="mesh-container-content">
+                                  <div id="comp-kh5xscof2" class="_1Z_nJ" data-testid="richTextElement">
+                                      <h2 class="font_0" style="text-align:left;line-height:1.41em;font-size:22px">
+                                          <span class="color_15">INVALID PASSWORD.</span>
+                                          <br/><br/><br/>
+                                      </h2>
+                                  </div>
+                                </div>
+                                {% endif %}
+              
+              <h3 class="employer-name">Reciever's Details</h3>
+              <p><b>Name</b> :{{first_name}} {{last_name}} </p>
+               <!-- <p><b>Email</b> : {{user_email}} </p>  -->
+               <p><b>Email</b> : <input type=hidden name="receiver_email" value="{{ user_email }}">&nbsp;{{ user_email }}</p>
+              <p><b>Account No.</b> : {{account_no}}</p>
+              <span ><a href="/view_customer/{{user_email}}/">|View Customer|</a></span>
+            </li>
+            <li class="columns large-5">
+              
+              <h3 class="employer-name">Sender's Detail</h3>
+              <div class="row contact-form">
+                <div class="columns large-8">
+                  <form id="contact-form" method="post" action="mybank/transfer/">
+                    <input type="text" name="sender_account_no" placeholder="Account No:" required>
+                    <input type="text" name="sender_email" placeholder="Email:" required>
+                    
+                    <input type="password" name="sender_password"  placeholder="Password:" required>
+                    <input type="number" name="amount" placeholder="Amount:" required>
+                    {%csrf_token%}
+                    <input type="submit" class="button" name="submit" value="TRANSFER" >
+                  </form>
+                </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  {%endblock%}
